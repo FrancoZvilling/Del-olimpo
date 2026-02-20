@@ -20,13 +20,34 @@ const servicesData = {
     eventos: {
         title: "Eventos y Personal",
         subtitle: "Creamos experiencias memorables para cada ocasión",
-        description: "Ya sea un lanzamiento corporativo, una feria internacional o una fiesta social, nuestro equipo se encarga de cada detalle. Proveemos personal calificado y coordinación integral.",
+        description: (
+            <>
+                Nos especializamos en la coordinación operativa de eventos, trabajando junto a equipos internos, proveedores y marcas para que todo suceda como está planificado. <br />
+                <strong style={{ color: 'var(--color-primary)' }}>Estamos presentes antes, durante y después del evento.</strong>
+            </>
+        ),
         color: "#8F6D2D", // Secondary
         subServices: [
-            { title: "Eventos Corporativos", desc: "Organización integral de lanzamientos, fiestas de fin de año y aniversarios.", imgColor: "#D7CCC8" },
-            { title: "Promotoras y Azafatas", desc: "Personal seleccionado y capacitado para imagen de marca y asistencia.", imgColor: "#BCAAA4" },
-            { title: "Ferias y Congresos", desc: "Soporte operativo y de imagen en exposiciones de gran escala.", imgColor: "#A1887F" },
-            { title: "Asistencia Protocolar", desc: "Atención VIP y recepción para eventos de alta categoría.", imgColor: "#8D6E63" }
+            {
+                title: "Coordinación Integral",
+                items: ["Coordinación general del evento"],
+                imgColor: "#D7CCC8"
+            },
+            {
+                title: "Proveedores y Equipos",
+                items: ["Gestión de proveedores y equipos"],
+                imgColor: "#BCAAA4"
+            },
+            {
+                title: "Supervisión y Timing",
+                items: ["Supervisión en tiempo real", "Control de tiempos y armado"],
+                imgColor: "#A1887F"
+            },
+            {
+                title: "Respuesta Inmediata",
+                items: ["Resolución en terreno"],
+                imgColor: "#8D6E63"
+            }
         ]
     },
     logistica: {
@@ -35,10 +56,26 @@ const servicesData = {
         description: "La base de una gran acción es una ejecución impecable. Nos ocupamos de la logística, el montaje y la producción para que vos solo te preocupes por los resultados.",
         color: "#333333", // Dark
         subServices: [
-            { title: "Logística Integral", desc: "Distribución de materiales y equipamiento a nivel nacional.", imgColor: "#E0E0E0" },
-            { title: "Armado de Stands", desc: "Diseño y montaje de estructuras para ferias y puntos de venta.", imgColor: "#BDBDBD" },
-            { title: "Vinilos y Cartelería", desc: "Producción e instalación de gráfica vehicular y vidrieras.", imgColor: "#9E9E9E" },
-            { title: "Relevamiento Fotográfico", desc: "Auditoría visual y reporte de actividades en tiempo real.", imgColor: "#757575" }
+            {
+                title: "Logística para acciones promocionales",
+                items: [
+                    "Armado y desarmado de eventos",
+                    "Distribución de material POP",
+                    "Coordinación de personal",
+                    "Timing y ejecución en punto de venta"
+                ],
+                imgColor: "#E0E0E0"
+            },
+            {
+                title: "Logística de transporte y distribución",
+                items: [
+                    "Retiro y entrega de mercadería",
+                    "Distribución a sucursales / puntos de venta",
+                    "Coordinación de envíos",
+                    "Seguimiento y control operativo"
+                ],
+                imgColor: "#BDBDBD"
+            }
         ]
     }
 };
@@ -119,8 +156,15 @@ const ServiceDetail = () => {
                                 </div>
 
                                 <div style={{ padding: '25px' }}>
-                                    <h3 style={{ fontSize: '1.3rem', marginBottom: '10px', color: service.color }}>{sub.title}</h3>
-                                    <p style={{ color: '#666', fontSize: '0.95rem' }}>{sub.desc}</p>
+                                    <h3 style={{ fontSize: '1.3rem', marginBottom: '15px', color: service.color }}>{sub.title}</h3>
+                                    {sub.desc && <p style={{ color: '#666', fontSize: '0.95rem', lineHeight: '1.6' }}>{sub.desc}</p>}
+                                    {sub.items && (
+                                        <ul style={{ color: '#666', fontSize: '0.95rem', paddingLeft: '20px', margin: 0, display: 'flex', flexDirection: 'column', gap: '8px', lineHeight: '1.5' }}>
+                                            {sub.items.map((item, i) => (
+                                                <li key={i}>{item}</li>
+                                            ))}
+                                        </ul>
+                                    )}
                                 </div>
                             </motion.div>
                         ))}

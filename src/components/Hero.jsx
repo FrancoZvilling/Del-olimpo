@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import ParticleBackground from './ParticleBackground';
 
 const Hero = () => {
     return (
@@ -19,12 +20,16 @@ const Hero = () => {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                background: 'linear-gradient(to right, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%)',
-                zIndex: 1
+                background: 'linear-gradient(to right, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.2) 100%)', // Gradiente mucho más sutil para dar protagonismo a las partículas
+                zIndex: 2 // El gradiente va encima de las partículas (z-index 1) para un efecto pulido
             }}></div>
 
-            <div className="container" style={{ position: 'relative', zIndex: 2, display: 'grid', gridTemplateColumns: '1fr', gap: '40px', paddingTop: '80px' }}>
+            {/* Componente Animado Integrado (Combina Red + Formas Geom.) */}
+            <ParticleBackground />
+
+            <div className="container" style={{ position: 'relative', zIndex: 3, display: 'grid', gridTemplateColumns: '1fr', gap: '40px', paddingTop: '80px' }}>
                 <motion.div
+                    className="hero-content"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
@@ -52,11 +57,11 @@ const Hero = () => {
                         Agencia <span style={{ color: 'var(--color-primary)' }}>Del Olimpo</span>
                     </h1>
 
-                    <p style={{ fontSize: 'clamp(1.1rem, 2vw, 1.4rem)', color: 'var(--color-text-muted)', marginBottom: '40px', maxWidth: '600px' }}>
+                    <p style={{ fontSize: 'clamp(1.1rem, 2vw, 1.4rem)', color: 'var(--color-text-muted)', marginBottom: '40px', maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }} className="hero-text">
                         Conectamos tu marca con el público objetivo mediante soluciones creativas y personalizadas. Convertimos ideas en experiencias memorables.
                     </p>
 
-                    <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
+                    <div className="hero-buttons" style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
                         <a href="#contact" className="btn btn-secondary">
                             Empezar Ahora <ArrowRight size={20} />
                         </a>
@@ -79,6 +84,21 @@ const Hero = () => {
                 filter: 'blur(60px)',
                 zIndex: 1
             }}></div>
+
+            <style>{`
+                @media (max-width: 768px) {
+                    .hero-content {
+                        text-align: center;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                    .hero-buttons {
+                        justify-content: center;
+                        width: 100%;
+                    }
+                }
+            `}</style>
         </section>
     );
 };
