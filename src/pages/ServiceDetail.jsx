@@ -148,7 +148,7 @@ const ServiceDetail = () => {
                                 {/* Imagen de Portada del sub-servicio */}
                                 <div style={{
                                     height: '220px',
-                                    background: `url(${sub.imgUrl}) center/cover no-repeat`,
+                                    background: `url("${sub.imgUrl}") center/cover no-repeat`,
                                     borderBottom: `3px solid ${service.color}`
                                 }}>
                                 </div>
