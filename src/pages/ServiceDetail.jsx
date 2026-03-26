@@ -11,10 +11,10 @@ const servicesData = {
         description: "Diseñamos estrategias de impacto que van más allá de lo convencional. Desde activaciones en punto de venta hasta campañas de marketing directo, nos aseguramos de que tu mensaje llegue alto y claro.",
         color: "#FFBE4A", // Primary
         subServices: [
-            { title: "Activaciones BTL", desc: "Intervenciones creativas en espacios públicos y privados para generar alto impacto.", imgColor: "#FFE0B2" },
-            { title: "Trade Marketing", desc: "Gestión estratégica en el punto de venta para maximizar la visibilidad y rotación.", imgColor: "#FFCC80" },
-            { title: "Marketing Directo", desc: "Comunicación personalizada para fidelizar y captar nuevos clientes potenciales.", imgColor: "#FFB74D" },
-            { title: "Merchandising", desc: "Diseño y producción de materiales promocionales que destacan.", imgColor: "#FFA726" }
+            { title: "Activaciones BTL", desc: "Intervenciones creativas en espacios públicos y privados para generar alto impacto.", imgUrl: "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?q=80&w=800&auto=format&fit=crop" },
+            { title: "Trade Marketing", desc: "Gestión estratégica en el punto de venta para maximizar la visibilidad y rotación.", imgUrl: "https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?q=80&w=800&auto=format&fit=crop" },
+            { title: "Marketing Directo", desc: "Comunicación personalizada para fidelizar y captar nuevos clientes potenciales.", imgUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop" },
+            { title: "Merchandising", desc: "Diseño y producción de materiales promocionales que destacan.", imgUrl: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=800&auto=format&fit=crop" }
         ]
     },
     eventos: {
@@ -31,22 +31,22 @@ const servicesData = {
             {
                 title: "Coordinación Integral",
                 items: ["Coordinación general del evento"],
-                imgColor: "#D7CCC8"
+                imgUrl: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=800&auto=format&fit=crop"
             },
             {
                 title: "Proveedores y Equipos",
                 items: ["Gestión de proveedores y equipos"],
-                imgColor: "#BCAAA4"
+                imgUrl: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=800&auto=format&fit=crop"
             },
             {
                 title: "Supervisión y Timing",
                 items: ["Supervisión en tiempo real", "Control de tiempos y armado"],
-                imgColor: "#A1887F"
+                imgUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop"
             },
             {
                 title: "Respuesta Inmediata",
                 items: ["Resolución en terreno"],
-                imgColor: "#8D6E63"
+                imgUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop"
             }
         ]
     },
@@ -64,7 +64,7 @@ const servicesData = {
                     "Coordinación de personal",
                     "Timing y ejecución en punto de venta"
                 ],
-                imgColor: "#E0E0E0"
+                imgUrl: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop"
             },
             {
                 title: "Logística de transporte y distribución",
@@ -74,7 +74,7 @@ const servicesData = {
                     "Coordinación de envíos",
                     "Seguimiento y control operativo"
                 ],
-                imgColor: "#BDBDBD"
+                imgUrl: "https://images.unsplash.com/photo-1580674285054-bed31e145f59?q=80&w=800&auto=format&fit=crop"
             }
         ]
     }
@@ -140,19 +140,17 @@ const ServiceDetail = () => {
                                     borderRadius: 'var(--radius-md)',
                                     overflow: 'hidden',
                                     boxShadow: 'var(--shadow-md)',
-                                    border: '1px solid #eee'
+                                    border: '1px solid #eee',
+                                    display: 'flex',
+                                    flexDirection: 'column'
                                 }}
                             >
-                                {/* Placeholder Image Area */}
+                                {/* Imagen de Portada del sub-servicio */}
                                 <div style={{
-                                    height: '180px',
-                                    background: sub.imgColor,
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    color: 'rgba(0,0,0,0.2)'
+                                    height: '220px',
+                                    background: `url(${sub.imgUrl}) center/cover no-repeat`,
+                                    borderBottom: `3px solid ${service.color}`
                                 }}>
-                                    <span style={{ fontWeight: 'bold' }}>Imagen: {sub.title}</span>
                                 </div>
 
                                 <div style={{ padding: '25px' }}>

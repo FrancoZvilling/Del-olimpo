@@ -58,7 +58,7 @@ const Footer = () => {
                         <h4 style={{ fontSize: '1.2rem', marginBottom: '25px', color: 'white' }}>Contacto</h4>
                         {/* Simplified Contact: Just Icons */}
                         <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', alignItems: 'center', height: '100%', marginTop: '10px' }}>
-                            <a href="https://wa.me/5492996559397" target="_blank" rel="noreferrer" className="footer-social-btn" title="WhatsApp">
+                            <a href="https://wa.me/5492996559397?text=Hola,%20necesito%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20Agencia%20Del%20Olimpo." target="_blank" rel="noreferrer" className="footer-social-btn" title="WhatsApp">
                                 <Phone size={18} />
                             </a>
                             <a href="https://instagram.com/delolimpo_agencia" target="_blank" rel="noreferrer" className="footer-social-btn" title="Instagram">

@@ -1,8 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Mail, Instagram, MapPin, Send } from 'lucide-react';
 
 const Contact = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        service: 'Marketing y BTL',
+        message: ''
+    });
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const phoneNumber = "5492996559397";
+        const textMessage = `*Nueva consulta desde la Web* 🚀\n\n*Nombre:* ${formData.name}\n*Email:* ${formData.email}\n*Servicio de Interés:* ${formData.service}\n\n*Mensaje:*\n${formData.message}`;
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(textMessage)}`;
+        window.open(whatsappUrl, '_blank');
+    };
+
+    // Mensaje genérico para el botón suelto de WhatsApp
+    const genericWaMessage = encodeURIComponent("Hola, necesito más información sobre los servicios de Agencia Del Olimpo.");
+
     return (
         <section id="contact" className="section" style={{ background: 'var(--color-bg)' }}>
             <div className="container">
@@ -28,7 +53,7 @@ const Contact = () => {
                                 </motion.div>
                                 <div>
                                     <h4 style={{ fontSize: '1.1rem', marginBottom: '4px' }}>Teléfono / WhatsApp</h4>
-                                    <a href="https://wa.me/5492996559397" className="hover:text-primary transition-colors">299 655 9397</a>
+                                    <a href={`https://wa.me/5492996559397?text=${genericWaMessage}`} target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">299 655 9397</a>
                                 </div>
                             </div>
 
@@ -73,27 +98,27 @@ const Contact = () => {
                         style={{ background: 'white', padding: '40px', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-md)', border: '1px solid #eee' }}
                     >
                         <h3 style={{ fontSize: '1.8rem', marginBottom: '25px' }}>Hablemos de tu proyecto</h3>
-                        <form style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                             <div>
                                 <label style={{ display: 'block', marginBottom: '8px', fontWeight: 500 }}>Nombre Completo</label>
-                                <input type="text" placeholder="Tu nombre" style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid #ddd', fontSize: '1rem', outline: 'none' }} />
+                                <input type="text" name="name" value={formData.name} onChange={handleChange} required placeholder="Tu nombre" style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid #ddd', fontSize: '1rem', outline: 'none' }} />
                             </div>
                             <div>
                                 <label style={{ display: 'block', marginBottom: '8px', fontWeight: 500 }}>Email</label>
-                                <input type="email" placeholder="ejemplo@correo.com" style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid #ddd', fontSize: '1rem', outline: 'none' }} />
+                                <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder="ejemplo@correo.com" style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid #ddd', fontSize: '1rem', outline: 'none' }} />
                             </div>
                             <div>
                                 <label style={{ display: 'block', marginBottom: '8px', fontWeight: 500 }}>Servicio de Interés</label>
-                                <select style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid #ddd', fontSize: '1rem', outline: 'none', background: 'white' }}>
-                                    <option>Marketing y BTL</option>
-                                    <option>Eventos y Personal</option>
-                                    <option>Logística</option>
-                                    <option>Otro</option>
+                                <select name="service" value={formData.service} onChange={handleChange} required style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid #ddd', fontSize: '1rem', outline: 'none', background: 'white' }}>
+                                    <option value="Marketing y BTL">Marketing y BTL</option>
+                                    <option value="Eventos y Personal">Eventos y Personal</option>
+                                    <option value="Logística">Logística</option>
+                                    <option value="Otro">Otro</option>
                                 </select>
                             </div>
                             <div>
                                 <label style={{ display: 'block', marginBottom: '8px', fontWeight: 500 }}>Mensaje</label>
-                                <textarea rows="4" placeholder="Contanos más sobre tu proyecto..." style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid #ddd', fontSize: '1rem', outline: 'none', resize: 'vertical' }}></textarea>
+                                <textarea name="message" value={formData.message} onChange={handleChange} required rows="4" placeholder="Contanos más sobre tu proyecto..." style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid #ddd', fontSize: '1rem', outline: 'none', resize: 'vertical' }}></textarea>
                             </div>
                             <div style={{ position: 'relative', marginTop: '10px', width: '100%', display: 'flex', justifyContent: 'center' }}>
                                 {/* Polvo dorado / Tinkerbell */}
@@ -146,7 +171,7 @@ const Contact = () => {
                                     whileHover={{ scale: 1.02, boxShadow: '0 8px 25px rgba(143, 109, 45, 0.4)' }}
                                     whileTap={{ scale: 0.95 }}
                                     style={{ width: '100%', border: 'none', position: 'relative', zIndex: 1, boxShadow: '0 4px 10px rgba(143, 109, 45, 0.2)' }}>
-                                    Enviar Mensaje <Send size={18} />
+                                    Enviar Mensaje por WhatsApp <Send size={18} />
                                 </motion.button>
                             </div>
                         </form>
@@ -159,3 +184,4 @@ const Contact = () => {
 };
 
 export default Contact;
+
